@@ -1,5 +1,6 @@
 'use strict';
 
+
 Event.prototype.addParticipant = function (participant) {
     if (!(participant instanceof Participant)) {
         console.log('Участник не объект Participant');
@@ -7,6 +8,8 @@ Event.prototype.addParticipant = function (participant) {
     }
     this.participants.push(participant);
 };
+
+
 
 function Participant(name, email) {
     if (!new.target) return new Participant(name, email);
@@ -19,6 +22,7 @@ function Event(title, date) {
     this.date = date;
     this.participants = [];
 };
+
 
 Object.defineProperty(Event.prototype, 'listParticipants', {
     value: function listParticipants() {
@@ -34,6 +38,7 @@ Object.defineProperty(Event.prototype, 'listParticipants', {
     configurable: true
 });
 
+
 Object.defineProperty(Event.prototype, 'findParticipantByEmail', {
     value: function findParticipantByEmail(email) {
         return this.participants.find(participant => participant.email === email);
@@ -44,13 +49,11 @@ Object.defineProperty(Event.prototype, 'findParticipantByEmail', {
 });
 
 
-
 //Создание участников
-
 const participant1 = new Participant('Dasha', 'dashakotsuba@mail.ru');
 const participant2 = new Participant('Roma', 'roma1995@gmail.com');
 
-//специально написала без new так как в функции-консутрукторе Participant есть проверка на это.
+//специально написала без new, так как в функции-консутркторе Participant есть проверка
 
 const participant3 =  Participant('Jordan', 'jordan@gmail.com');
 const participant4 =  Participant('Nick', 'nicksmith@gmail.com');
@@ -64,6 +67,7 @@ const event2 = new Event('Conference', '2024-12-01');
 
 event1.addParticipant(participant1);
 event1.addParticipant(participant3);
+
 
 event2.addParticipant(participant2);
 event2.addParticipant(participant4);
